@@ -640,9 +640,14 @@
       margin-bottom: 0.25rem;
     }
 
-    .contact-details p {
+    .contact-details p, .contact-details a {
       color: var(--text-muted);
       font-size: 0.95rem;
+      transition: var(--transition);
+    }
+
+    .contact-details a:hover {
+      color: var(--accent-cyan);
     }
 
     /* Map Mock Placeholder */
@@ -1265,7 +1270,7 @@
             </div>
             <div class="contact-details">
               <h4>Phone</h4>
-              <p>09 800 WELD (09 800 9353)</p>
+              <p><a href="tel:02108186076">02108186076</a></p>
             </div>
           </div>
 
@@ -1275,7 +1280,7 @@
             </div>
             <div class="contact-details">
               <h4>Email Inquiry</h4>
-              <p>info@marinecarehub.co.nz</p>
+              <p><a href="mailto:admin@marinecarehub.co.nz">admin@marinecarehub.co.nz</a></p>
             </div>
           </div>
 
