@@ -433,6 +433,7 @@
       transition: var(--transition);
       display: flex;
       flex-direction: column;
+      cursor: pointer;
     }
 
     .gallery-item:hover {
@@ -450,10 +451,15 @@
       overflow: hidden;
     }
 
-    .gallery-thumb svg {
-      width: 64px;
-      height: 64px;
-      color: rgba(203, 213, 225, 0.2);
+    .gallery-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover .gallery-thumb img {
+      transform: scale(1.05);
     }
 
     .gallery-badge {
@@ -482,6 +488,20 @@
     .gallery-info p {
       color: var(--text-muted);
       font-size: 0.875rem;
+    }
+
+    .img-fallback {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      text-align: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      width: 100%;
+      height: 100%;
+      background: var(--bg-darker);
     }
 
     /* -------------------------------------------------------------
@@ -704,7 +724,7 @@
     }
 
     /* -------------------------------------------------------------
-       MODAL POPUP
+       MODAL POPUPS
     ------------------------------------------------------------- */
     .modal-overlay {
       position: fixed;
@@ -746,7 +766,6 @@
       transform: translateY(0);
     }
 
-    /* Lightbox Modal Specifics */
     .lightbox-box {
       max-width: 800px;
       padding: 1.5rem;
@@ -770,35 +789,6 @@
       max-width: 100%;
       max-height: 60vh;
       object-fit: contain;
-    }
-
-    .gallery-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-
-    .gallery-item:hover .gallery-thumb img {
-      transform: scale(1.05);
-    }
-
-    .gallery-item {
-      cursor: pointer;
-    }
-
-    .img-fallback {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      text-align: center;
-      gap: 0.5rem;
-      color: var(--text-muted);
-      width: 100%;
-      height: 100%;
-      background: var(--bg-darker);
     }
 
     .modal-icon {
@@ -874,7 +864,6 @@
     <div class="container header-container">
       <a href="#" class="logo">
         <div class="logo-icon">
-          <!-- Anchor / Weld Icon SVG -->
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="5" r="3"/>
             <line x1="12" y1="8" x2="12" y2="21"/>
@@ -961,7 +950,6 @@
       </div>
 
       <div class="services-grid">
-        <!-- Service 1 -->
         <div class="service-card">
           <div class="service-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -972,7 +960,6 @@
           <p>High-precision TIG welding for aluminium and stainless steel. Strong, seamless welds engineered to withstand marine stress and vibration.</p>
         </div>
 
-        <!-- Service 2 -->
         <div class="service-card">
           <div class="service-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -984,20 +971,18 @@
           <p>Custom aluminium hardtops, hulls, platforms, and fuel tanks fabricated using marine-grade 5083 alloy for structural integrity and light weight.</p>
         </div>
 
-        <!-- Service 3 -->
         <div class="service-card">
           <div class="service-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="12 2 2 7 12 12 22 7 12 2"/>
               <polyline points="2 17 12 22 22 17"/>
-              <polyline points="2 12 12 17 22 12"/>
+              <polyline points="2 12 17 22 12"/>
             </svg>
           </div>
           <h3>Stainless Steel Railings</h3>
           <p>Custom 316 stainless bow rails, pushpits, rocket launchers, and grab handles polished to a high mirror finish for corrosion resistance.</p>
         </div>
 
-        <!-- Service 4 -->
         <div class="service-card">
           <div class="service-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1010,7 +995,6 @@
           <p>Tailor-made Bimini frames, canvas support structures, and solid aluminium hardtops integrated directly with your vessel layout.</p>
         </div>
 
-        <!-- Service 5 -->
         <div class="service-card">
           <div class="service-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1021,7 +1005,6 @@
           <p>Pressure-tested custom aluminium and stainless fuel & water tanks made to exact dimensions to maximize internal hull space.</p>
         </div>
 
-        <!-- Service 6 -->
         <div class="service-card">
           <div class="service-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1096,10 +1079,10 @@
 
       <div class="gallery-grid" id="galleryGrid">
         <!-- Item 1: Stainless -->
-        <div class="gallery-item" data-category="stainless" data-img="24HPmuffler.jpg" data-title="24HP Stainless Muffler">
+        <div class="gallery-item" data-category="stainless" data-img="images/24HPmuffler.jpg" data-title="24HP Stainless Muffler">
           <div class="gallery-thumb">
             <span class="gallery-badge">Stainless</span>
-            <img src="24HPmuffler.jpg" alt="24HP Muffler Stainless Fabrication" onerror="handleImgError(this, '24HPmuffler.jpg', 'Stainless')">
+            <img src="images/24HPmuffler.jpg" alt="24HP Muffler Stainless Fabrication" onerror="handleImgError(this, '24HPmuffler.jpg', 'Stainless')">
           </div>
           <div class="gallery-info">
             <h4>24HP Stainless Muffler</h4>
@@ -1108,10 +1091,10 @@
         </div>
 
         <!-- Item 2: Muffler -->
-        <div class="gallery-item" data-category="muffler" data-img="316-stainless-welding.jpg" data-title="316 Stainless Welding">
+        <div class="gallery-item" data-category="muffler" data-img="images/316-stainless-welding.jpg" data-title="316 Stainless Welding">
           <div class="gallery-thumb">
             <span class="gallery-badge">Muffler</span>
-            <img src="316-stainless-welding.jpg" alt="316 Stainless Welding Muffler Work" onerror="handleImgError(this, '316-stainless-welding.jpg', 'Muffler')">
+            <img src="images/316-stainless-welding.jpg" alt="316 Stainless Welding Muffler Work" onerror="handleImgError(this, '316-stainless-welding.jpg', 'Muffler')">
           </div>
           <div class="gallery-info">
             <h4>316 Stainless Welding</h4>
@@ -1120,10 +1103,10 @@
         </div>
 
         <!-- Item 3: Components -->
-        <div class="gallery-item" data-category="components" data-img="Amphibiuosmarine-components.jpg" data-title="Amphibious Marine Components">
+        <div class="gallery-item" data-category="components" data-img="images/Amphibiuosmarine-components.jpg" data-title="Amphibious Marine Components">
           <div class="gallery-thumb">
             <span class="gallery-badge">Components</span>
-            <img src="Amphibiuosmarine-components.jpg" alt="Amphibious Marine Components" onerror="handleImgError(this, 'Amphibiuosmarine-components.jpg', 'Components')">
+            <img src="images/Amphibiuosmarine-components.jpg" alt="Amphibious Marine Components" onerror="handleImgError(this, 'Amphibiuosmarine-components.jpg', 'Components')">
           </div>
           <div class="gallery-info">
             <h4>Amphibious Marine Components</h4>
@@ -1132,10 +1115,10 @@
         </div>
 
         <!-- Item 4: Muffler -->
-        <div class="gallery-item" data-category="muffler" data-img="BNSmuffler.jpg" data-title="BNS Marine Muffler">
+        <div class="gallery-item" data-category="muffler" data-img="images/BNSmuffler.jpg" data-title="BNS Marine Muffler">
           <div class="gallery-thumb">
             <span class="gallery-badge">Muffler</span>
-            <img src="BNSmuffler.jpg" alt="BNS Muffler Unit" onerror="handleImgError(this, 'BNSmuffler.jpg', 'Muffler')">
+            <img src="images/BNSmuffler.jpg" alt="BNS Muffler Unit" onerror="handleImgError(this, 'BNSmuffler.jpg', 'Muffler')">
           </div>
           <div class="gallery-info">
             <h4>BNS Marine Muffler</h4>
@@ -1144,10 +1127,10 @@
         </div>
 
         <!-- Item 5: Muffler -->
-        <div class="gallery-item" data-category="muffler" data-img="honda-muffle.jpg" data-title="Honda Marine Muffler">
+        <div class="gallery-item" data-category="muffler" data-img="images/honda-muffle.jpg" data-title="Honda Marine Muffler">
           <div class="gallery-thumb">
             <span class="gallery-badge">Muffler</span>
-            <img src="honda-muffle.jpg" alt="Honda Marine Muffler" onerror="handleImgError(this, 'honda-muffle.jpg', 'Muffler')">
+            <img src="images/honda-muffle.jpg" alt="Honda Marine Muffler" onerror="handleImgError(this, 'honda-muffle.jpg', 'Muffler')">
           </div>
           <div class="gallery-info">
             <h4>Honda Marine Muffler</h4>
@@ -1156,10 +1139,10 @@
         </div>
 
         <!-- Item 6: Muffler -->
-        <div class="gallery-item" data-category="muffler" data-img="muffer.jpg" data-title="Custom Marine Muffler">
+        <div class="gallery-item" data-category="muffler" data-img="images/muffer.jpg" data-title="Custom Marine Muffler">
           <div class="gallery-thumb">
             <span class="gallery-badge">Muffler</span>
-            <img src="muffer.jpg" alt="Custom Marine Muffler" onerror="handleImgError(this, 'muffer.jpg', 'Muffler')">
+            <img src="images/muffer.jpg" alt="Custom Marine Muffler" onerror="handleImgError(this, 'muffer.jpg', 'Muffler')">
           </div>
           <div class="gallery-info">
             <h4>Custom Marine Muffler</h4>
@@ -1168,10 +1151,10 @@
         </div>
 
         <!-- Item 7: Muffler -->
-        <div class="gallery-item" data-category="muffler" data-img="muffler-tig-welding.jpg" data-title="Muffler TIG Welding Detail">
+        <div class="gallery-item" data-category="muffler" data-img="images/muffler-tig-welding.jpg" data-title="Muffler TIG Welding Detail">
           <div class="gallery-thumb">
             <span class="gallery-badge">Muffler</span>
-            <img src="muffler-tig-welding.jpg" alt="Muffler TIG Welding Detail" onerror="handleImgError(this, 'muffler-tig-welding.jpg', 'Muffler')">
+            <img src="images/muffler-tig-welding.jpg" alt="Muffler TIG Welding Detail" onerror="handleImgError(this, 'muffler-tig-welding.jpg', 'Muffler')">
           </div>
           <div class="gallery-info">
             <h4>Muffler TIG Welding Detail</h4>
@@ -1240,7 +1223,6 @@
             </div>
           </div>
 
-          <!-- Live Estimator Output -->
           <div class="estimator-preview">
             <div class="estimator-info">
               <strong style="color: var(--text-main); font-size: 1.05rem;">Estimated Starting Cost</strong>
@@ -1378,9 +1360,7 @@
   <!-- LIGHTBOX MODAL -->
   <div class="modal-overlay" id="lightboxOverlay">
     <div class="modal-box lightbox-box">
-      <div class="lightbox-img-wrapper" id="lightboxMedia">
-        <!-- Dynamic img or fallback SVG inserted via JS -->
-      </div>
+      <div class="lightbox-img-wrapper" id="lightboxMedia"></div>
       <h3 id="lightboxTitle" style="font-size: 1.35rem; margin-bottom: 0.5rem; color: var(--text-main);">Project Title</h3>
       <p id="lightboxCategory" style="color: var(--accent-cyan); font-size: 0.9rem; margin-bottom: 1.25rem; font-weight: 600; text-transform: uppercase;">CATEGORY</p>
       <button class="btn btn-outline" id="lightboxClose">Close Preview</button>
@@ -1389,7 +1369,6 @@
 
   <!-- VANILLA JAVASCRIPT LOGIC -->
   <script>
-    // Fallback Image Handler
     function handleImgError(imgElement, fileName, categoryName) {
       const parent = imgElement.parentElement;
       parent.innerHTML = `
@@ -1402,10 +1381,8 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Set Copyright Year
       document.getElementById('year').textContent = new Date().getFullYear();
 
-      // 2. Mobile Nav Toggle
       const mobileToggle = document.getElementById('mobileToggle');
       const navMenu = document.getElementById('navMenu');
 
@@ -1413,14 +1390,12 @@
         navMenu.classList.toggle('active');
       });
 
-      // Close menu on link click (mobile)
       document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
           navMenu.classList.remove('active');
         });
       });
 
-      // 3. Gallery Filtering
       const filterBtns = document.querySelectorAll('.filter-btn');
       const galleryItems = document.querySelectorAll('.gallery-item');
 
@@ -1441,7 +1416,6 @@
         });
       });
 
-      // 4. Lightbox Modal Logic
       const lightboxOverlay = document.getElementById('lightboxOverlay');
       const lightboxMedia = document.getElementById('lightboxMedia');
       const lightboxTitle = document.getElementById('lightboxTitle');
@@ -1475,7 +1449,6 @@
         }
       });
 
-      // 5. Interactive Quote Estimator
       const materialSelect = document.getElementById('material');
       const serviceSelect = document.getElementById('serviceType');
       const priceDisplay = document.getElementById('estimatedPrice');
@@ -1491,7 +1464,6 @@
       serviceSelect.addEventListener('change', calculateEstimate);
       calculateEstimate();
 
-      // 6. Quote Form Submission & Modal Handling
       const quoteForm = document.getElementById('quoteForm');
       const modalOverlay = document.getElementById('modalOverlay');
       const modalClose = document.getElementById('modalClose');
